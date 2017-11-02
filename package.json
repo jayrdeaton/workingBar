@@ -1,5 +1,5 @@
 {
-  "name": "workingbar",
+  "name": "working-bar",
   "version": "1.0.0",
   "description": "Displays a bar while node is working",
   "main": "index.js",
