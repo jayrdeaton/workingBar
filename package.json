@@ -1,0 +1,22 @@
+{
+  "name": "workingbar",
+  "version": "1.0.0",
+  "description": "Displays a bar while node is working",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayrdeaton/workingBar.git"
+  },
+  "author": "Jay Deaton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayrdeaton/workingBar/issues"
+  },
+  "homepage": "https://github.com/jayrdeaton/workingBar#readme",
+  "dependencies": {
+    "string-length": "^2.0.0"
+  }
+}
