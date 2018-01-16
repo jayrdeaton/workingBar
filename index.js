@@ -24,46 +24,45 @@ module.exports = class Working {
   };
   start() {
     this.running = true;
-    tick(this);
+    this.run();
   };
   stop() {
     this.running = false;
   };
-};
-
-let tick = (instance) => {
-  var working = instance.front;
-  var i = 1;
-  while (i < instance.position) {
-    working += instance.emptyCharacter;
-    i++;
-  };
-  working += instance.character;
-  i++;
-  while (i <= instance.length) {
-    working += instance.emptyCharacter;
-    i++;
-  };
-  working += instance.back;
-  process.stdout.write(`${working}\r`);
-  if (instance.forwardMotion) {
-    instance.position++;
-    if (instance.position == instance.length) instance.forwardMotion = false;
-  } else {
-    instance.position--;
-    if (instance.position == 1) instance.forwardMotion = true;
-  };
-  setTimeout((instance) => {
-    if (instance.running) {
-      tick(instance);
-    } else {
-      let i = 1;
-      var replacement = '';
-      while (i <= instance.length + stringLength(instance.front) + stringLength(instance.back)) {
-        replacement += ' ';
-        i++;
-      };
-      process.stdout.write(`${replacement}\r`);
+  run() {
+    var working = this.front;
+    var i = 1;
+    while (i < this.position) {
+      working += this.emptyCharacter;
+      i++;
     };
-  }, instance.interval, instance);
+    working += this.character;
+    i++;
+    while (i <= this.length) {
+      working += this.emptyCharacter;
+      i++;
+    };
+    working += this.back;
+    process.stdout.write(`${working}\r`);
+    if (this.forwardMotion) {
+      this.position++;
+      if (this.position == this.length) this.forwardMotion = false;
+    } else {
+      this.position--;
+      if (this.position == 1) this.forwardMotion = true;
+    };
+    setTimeout((instance) => {
+      if (this.running) {
+        this.run();
+      } else {
+        let i = 1;
+        var replacement = '';
+        while (i <= this.length + stringLength(this.front) + stringLength(this.back)) {
+          replacement += ' ';
+          i++;
+        };
+        process.stdout.write(`${replacement}\r`);
+      };
+    }, this.interval);
+  };
 };
