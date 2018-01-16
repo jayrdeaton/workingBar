@@ -55,14 +55,21 @@ module.exports = class Working {
       if (this.running) {
         this.run();
       } else {
-        let i = 1;
-        var replacement = '';
-        while (i <= this.length + stringLength(this.front) + stringLength(this.back)) {
-          replacement += ' ';
-          i++;
-        };
-        process.stdout.write(`${replacement}\r`);
+        this.clear();
       };
     }, this.interval);
+  };
+  clear() {
+    let i = 1;
+    var replacement = '';
+    while (i <= this.length + stringLength(this.front) + stringLength(this.back)) {
+      replacement += ' ';
+      i++;
+    };
+    process.stdout.write(`${replacement}\r`);
+  };
+  message(string) {
+    this.clear();
+    process.stdout.write(`${string}\n`);
   };
 };

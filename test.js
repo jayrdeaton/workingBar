@@ -1,14 +1,17 @@
 let Working = require('./');
 
 let working = new Working();
-working.length = 100;
+working.length = 78;
 // working.interval = 10;
 working.start();
 
 setTimeout(() => {
-  working.stop();
+  working.message('here')
   // working.start();
-}, 5000);
+}, 2000);
+setTimeout(() => {
+  working.stop();
+}, 4000);
 // setTimeout(() => {
 //   working.start();
 // }, 5010);
