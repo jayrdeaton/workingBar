@@ -5,11 +5,12 @@ module.exports = class Working {
     this.running = false;
     this.forwardMotion = true;
     this.length = 30;
-    this.front = "[";
-    this.back = "]";
-    this.character = "-";
-    this.emptyCharacter = " ";
+    this.front = '[';
+    this.back = ']';
+    this.character = '-';
+    this.emptyCharacter = ' ';
     this.position = 1;
+    this.interval = 35;
     if (data) {
       if (data.length) this.length = data.length;
       if (data.front) this.front = data.front;
@@ -17,38 +18,20 @@ module.exports = class Working {
       if (data.character) this.character = data.character;
       if (data.emptyCharacter) this.emptyCharacter = data.emptyCharacter;
       if (data.position) this.position = data.position;
+      if (data.interval) this.interval = data.interval;
     };
     var v_name = this;
   };
   start() {
-    manager(this);
-  }
+    this.running = true;
+    tick(this);
+  };
   stop() {
-    running = false;
-    let i = 1;
-    var replacement = "";
-    while (i <= this.length + stringLength(this.front) + stringLength(this.back)) {
-      replacement += " ";
-      i++;
-    };
-    process.stdout.write(replacement + "\r");
+    this.running = false;
   };
 };
 
-var running = false;
-var instance = {};
-
-let manager = (working) => {
-  running = true;
-  instance = working;
-  run()
-};
-let run = () => {
-  if (running) {
-    tick()
-  };
-};
-let tick = () => {
+let tick = (instance) => {
   var working = instance.front;
   var i = 1;
   while (i < instance.position) {
@@ -62,7 +45,7 @@ let tick = () => {
     i++;
   };
   working += instance.back;
-  process.stdout.write(working + "\r");
+  process.stdout.write(`${working}\r`);
   if (instance.forwardMotion) {
     instance.position++;
     if (instance.position == instance.length) instance.forwardMotion = false;
@@ -70,5 +53,17 @@ let tick = () => {
     instance.position--;
     if (instance.position == 1) instance.forwardMotion = true;
   };
-    setTimeout(run, 35);
+  setTimeout((instance) => {
+    if (instance.running) {
+      tick(instance);
+    } else {
+      let i = 1;
+      var replacement = '';
+      while (i <= instance.length + stringLength(instance.front) + stringLength(instance.back)) {
+        replacement += ' ';
+        i++;
+      };
+      process.stdout.write(`${replacement}\r`);
+    };
+  }, instance.interval, instance);
 };
