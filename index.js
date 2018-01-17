@@ -23,7 +23,6 @@ module.exports = class Working {
     var v_name = this;
   };
   start() {
-    console.log(stringLength(this.front), stringLength(this.character), stringLength(this.back))
     this.running = true;
     this.run();
   };
