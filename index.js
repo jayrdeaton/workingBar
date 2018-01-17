@@ -4,7 +4,7 @@ module.exports = class Working {
   constructor(data) {
     this.running = false;
     this.forwardMotion = true;
-    this.length = 30;
+    this.length = 40;
     this.front = '[';
     this.back = ']';
     this.character = '-';
@@ -23,6 +23,7 @@ module.exports = class Working {
     var v_name = this;
   };
   start() {
+    console.log(stringLength(this.front), stringLength(this.character), stringLength(this.back))
     this.running = true;
     this.run();
   };
@@ -30,6 +31,7 @@ module.exports = class Working {
     this.running = false;
   };
   run() {
+    let length = this.length - stringLength(this.front) - stringLength(this.character) - stringLength(this.back);
     var working = this.front;
     var i = 1;
     while (i < this.position) {
@@ -38,7 +40,7 @@ module.exports = class Working {
     };
     working += this.character;
     i++;
-    while (i <= this.length) {
+    while (i <= length) {
       working += this.emptyCharacter;
       i++;
     };
@@ -46,7 +48,7 @@ module.exports = class Working {
     process.stdout.write(`${working}\r`);
     if (this.forwardMotion) {
       this.position++;
-      if (this.position == this.length) this.forwardMotion = false;
+      if (this.position == length) this.forwardMotion = false;
     } else {
       this.position--;
       if (this.position == 1) this.forwardMotion = true;
@@ -62,7 +64,7 @@ module.exports = class Working {
   clear() {
     let i = 1;
     var replacement = '';
-    while (i <= this.length + stringLength(this.front) + stringLength(this.back)) {
+    while (i <= this.length) {
       replacement += ' ';
       i++;
     };
