@@ -28,6 +28,7 @@ module.exports = class Working {
   };
   stop() {
     this.running = false;
+    this.clear();
   };
   run() {
     let length = this.length - stringLength(this.front) - stringLength(this.character) - stringLength(this.back);
@@ -55,8 +56,6 @@ module.exports = class Working {
     setTimeout((instance) => {
       if (this.running) {
         this.run();
-      } else {
-        this.clear();
       };
     }, this.interval);
   };
