@@ -70,6 +70,7 @@ module.exports = class Working {
   };
   message(string) {
     this.clear();
+    this.position = 1;
     process.stdout.write(`${string}\n`);
   };
 };
