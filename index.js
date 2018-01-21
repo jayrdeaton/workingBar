@@ -32,6 +32,10 @@ module.exports = class Working {
   };
   run() {
     let length = this.length - stringLength(this.front) - stringLength(this.character) - stringLength(this.back);
+    if (this.position > length) {
+      this.position = 1;
+      this.forwardMotion = true;
+    };
     var working = this.front;
     var i = 1;
     while (i < this.position) {
@@ -69,8 +73,17 @@ module.exports = class Working {
     process.stdout.write(`${replacement}\r`);
   };
   message(string) {
-    this.clear();
     this.position = 1;
+    this.forwardMotion = true;
+    this.clear();
     process.stdout.write(`${string}\n`);
+  };
+  setFront(string) {
+    if (stringLength(string) > stringLength(this.front)) {
+      this.position -= stringLength(string) - 1;
+    } else {
+      this.position += stringLength(this.front) - 1;
+    };
+    this.front = string;
   };
 };

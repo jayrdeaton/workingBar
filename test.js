@@ -1,17 +1,14 @@
 let Working = require('./');
 
 let working = new Working();
-working.length = 78;
+working.length = 80;
+// working.front = 'heyooooooooooooooaasldkjflaksjdlfoo [';
 working.start();
-
 setTimeout(() => {
-  working.message('here');
-  working.front = ('heyoooooooooooooooo [')
+  working.setFront('heyooooooooooooooaasldkjflaksjdlfoo [');
   // working.start();
-}, 2000);
-setTimeout(() => {
-  working.stop();
-}, 2500);
-setTimeout(() => {
-  working.start();
-}, 3000)
+}, 3500);
+// setTimeout(() => {
+//   working.setFront('[');
+//   // working.start();
+// }, 3500);
