@@ -48,10 +48,10 @@ module.exports = class Working {
     process.stdout.write(`${working}\r`);
     if (this.forwardMotion) {
       this.position++;
-      if (this.position == length) this.forwardMotion = false;
+      if (this.position >= length) this.forwardMotion = false;
     } else {
       this.position--;
-      if (this.position == 1) this.forwardMotion = true;
+      if (this.position <= 1) this.forwardMotion = true;
     };
     setTimeout((instance) => {
       if (this.running) {

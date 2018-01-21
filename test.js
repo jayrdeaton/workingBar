@@ -10,15 +10,8 @@ setTimeout(() => {
   // working.start();
 }, 2000);
 setTimeout(() => {
-  working.message('here');
-  working.front = ('test [')
-  // working.start();
-}, 4000);
-setTimeout(() => {
-  working.message('here');
-  working.front = ('hi my name is a secret [')
-  // working.start();
-}, 6000);
-setTimeout(() => {
   working.stop();
-}, 10000);
+}, 2500);
+setTimeout(() => {
+  working.start();
+}, 3000)
