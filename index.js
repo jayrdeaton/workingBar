@@ -81,6 +81,7 @@ module.exports = class Working {
   setFront(string) {
     if (stringLength(string) > stringLength(this.front)) {
       this.position -= stringLength(string) - 1;
+      if (this.position < 1) this.position = 1;
     } else {
       this.position += stringLength(this.front) - 1;
     };
