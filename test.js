@@ -2,18 +2,17 @@ let Working = require('./');
 
 let working = new Working();
 working.length = 80;
-working.character = "-------"
-// working.front = 'heyooooooooooooooaasldkjflaksjdlfoo [';
+working.character = '------';
 working.start();
 
 setTimeout(() => {
-  working.setFront('heyooooooooooooooaasldkjflaksjdlfoo [');
+  working.character = `\x1b[36m${working.character}\x1b[0m`;
   // working.start();
-}, 1000);
+}, 5000);
 setTimeout(() => {
   working.stop();
   // working.start();
-}, 1500);
+}, 6500);
 // setTimeout(() => {
 //   working.setFront('[');
 //   // working.start();
