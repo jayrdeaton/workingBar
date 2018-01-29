@@ -37,7 +37,7 @@ Start process
 workingBar.start();
 ```
 
-Display a message without stopping display
+Print a message without stopping display
 
 ```
 workingBar.message('Hey there');
@@ -51,15 +51,10 @@ workingBar.setFront('New Front: [');
 
 Also works with colored strings
 
-Manually color
+Manually or with plugins like [Chalk](https://www.npmjs.com/package/chalk)
 
 ```
-workingBar.character = `\x1b[36m-----\x1b[0m`
-```
-
-Or use plugins to color like [Chalk](https://www.npmjs.com/package/chalk)
-
-```
+workingBar.character = '\x1b[36m-----\x1b[0m'
 workingBar.setFront(chalk.green('Colored Front: ['));
 ```
 
