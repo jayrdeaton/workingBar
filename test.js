@@ -9,7 +9,11 @@ working.start();
 setTimeout(() => {
   working.setFront('heyooooooooooooooaasldkjflaksjdlfoo [');
   // working.start();
-}, 2830);
+}, 1000);
+setTimeout(() => {
+  working.stop();
+  // working.start();
+}, 1500);
 // setTimeout(() => {
 //   working.setFront('[');
 //   // working.start();

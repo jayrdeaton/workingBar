@@ -64,13 +64,7 @@ module.exports = class Working {
     }, this.interval);
   };
   clear() {
-    let i = 1;
-    var replacement = '';
-    while (i <= this.length) {
-      replacement += ' ';
-      i++;
-    };
-    process.stdout.write(`${replacement}\r`);
+    process.stdout.clearLine();
   };
   message(string) {
     this.position = 1;
