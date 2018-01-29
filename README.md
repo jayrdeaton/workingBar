@@ -8,6 +8,14 @@ These instructions will show you how to quickly get working-bar setup and displa
 
 ### Installing
 
+Add this package to your project
+
+```
+npm install --save working-bar
+```
+
+### Using
+
 Instantiate object
 
 ```
