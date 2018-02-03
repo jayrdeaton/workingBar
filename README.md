@@ -43,13 +43,22 @@ Print a message without stopping display
 workingBar.message('Hey there');
 ```
 
-Change front or back while displaying
+Even change attributes while working
 
 ```
 workingBar.front = 'New Front: [';
 workingBar.back = '] New Back';
 ```
 
+Play around with different configurations
+
+```
+workingBar.before = '-';
+workingBar.character = '-';
+<!-- Or -->
+workingBar.empty = '|';
+workingBar.character = '----';
+```
 Also works with colored strings
 
 Manually or with plugins like [Cosmetic](https://www.npmjs.com/package/cosmetic)
@@ -57,6 +66,16 @@ Manually or with plugins like [Cosmetic](https://www.npmjs.com/package/cosmetic)
 ```
 workingBar.character = '\x1b[36m-----\x1b[0m'
 workingBar.front = cosmetic.green('Green Front: [');
+<!-- Or -->
+workingBar.before = '\x1b[36m-'
+workingBar.character = '-\x1b[0m'
+```
+
+Set both before and after empty characters at the same time
+Only one character strings accepted currently
+
+```
+workingBar.empty = '0';
 ```
 
 Stop process
@@ -70,8 +89,10 @@ Default values
 ```
 workingBar.length = 40;
 workingBar.front = '[';
-workingBar.back = ']';
+workingBar.before = ' ';
 workingBar.character = '-';
+workingBar.after = ' ';
+workingBar.back = ']';
 workingBar.interval = 35; //(milliseconds)
 ```
 

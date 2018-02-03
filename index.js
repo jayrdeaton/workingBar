@@ -16,7 +16,8 @@ let Working = class Working {
     this.frontString = '[';
     this.backString = ']';
     this.character = '-';
-    this.emptyCharacter = ' ';
+    this.beforeEmpty = ' ';
+    this.afterEmpty = ' ';
     this.position = 1;
     Object.defineProperty(this, 'position', {
       enumerable: false,
@@ -28,7 +29,8 @@ let Working = class Working {
       if (data.front) this.frontString = data.front;
       if (data.back) this.backString = data.back;
       if (data.character) this.character = data.character;
-      if (data.emptyCharacter) this.emptyCharacter = data.emptyCharacter;
+      if (data.before) this.beforeEmpty = data.before;
+      if (data.after) this.afterEmpty = data.after;
       if (data.position) this.position = data.position;
       if (data.interval) this.interval = data.interval;
     };
@@ -52,8 +54,28 @@ let Working = class Working {
     };
     this.backString = string;
   };
+  set before(string) {
+    if (stringLength(string) > 1) {
+      this.beforeEmpty = string.charAt(0);
+    } else {
+      this.beforeEmpty = string;
+    };
+  };
+  set after(string) {
+    if (stringLength(string) > 1) {
+      this.afterEmpty = string.charAt(0);
+    } else {
+      this.afterEmpty = string;
+    };
+  };
   set empty(string) {
-    this.emptyCharacter = string.charAt(0);
+    if (stringLength(string) > 1) {
+      this.beforeEmpty = string.charAt(0);
+      this.afterEmpty = string.charAt(0);
+    } else {
+      this.beforeEmpty = string;
+      this.afterEmpty = string;
+    };
   };
   start() {
     this.running = true;
@@ -73,13 +95,13 @@ let Working = class Working {
     var working = this.frontString;
     var i = 1;
     while (i < this.position) {
-      working += this.emptyCharacter;
+      working += this.beforeEmpty;
       i++;
     };
     working += this.character;
     i++;
     while (i <= length) {
-      working += this.emptyCharacter;
+      working += this.afterEmpty;
       i++;
     };
     working += this.backString;
