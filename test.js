@@ -1,19 +1,23 @@
-let Working = require('./');
+let WorkingBar = require('./');
 
-let working = new Working();
-working.length = 80;
-working.character = '------';
-working.start();
+let workingBar = new WorkingBar();
+workingBar.length = 80;
+workingBar.character = '------';
+workingBar.start();
 
 setTimeout(() => {
-  working.character = `\x1b[36m${working.character}\x1b[0m`;
-  // working.start();
-}, 5000);
+  workingBar.front = 'This is an incredibly long front: [';
+}, 2000);
+
 setTimeout(() => {
-  working.stop();
-  // working.start();
-}, 6500);
-// setTimeout(() => {
-//   working.setFront('[');
-//   // working.start();
-// }, 3500);
+  workingBar.character = `\x1b[36m${workingBar.character}\x1b[0m`;
+}, 4000);
+
+setTimeout(() => {
+  workingBar.front = '[';
+  workingBar.back = '] This is an incredibly long back';
+}, 6000);
+
+setTimeout(() => {
+  workingBar.stop('Ending message');
+}, 8000);

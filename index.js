@@ -1,42 +1,76 @@
 var stringLength = require('string-length');
 
-module.exports = class Working {
+let Working = class Working {
   constructor(data) {
     this.running = false;
+    Object.defineProperty(this, 'running', {
+      enumerable: false,
+      writable: true
+    });
     this.forwardMotion = true;
+    Object.defineProperty(this, 'forwardMotion', {
+      enumerable: false,
+      writable: true
+    });
     this.length = 40;
-    this.front = '[';
-    this.back = ']';
+    this.frontString = '[';
+    this.backString = ']';
     this.character = '-';
     this.emptyCharacter = ' ';
     this.position = 1;
+    Object.defineProperty(this, 'position', {
+      enumerable: false,
+      writable: true
+    });
     this.interval = 35;
     if (data) {
       if (data.length) this.length = data.length;
-      if (data.front) this.front = data.front;
-      if (data.back) this.back = data.back;
+      if (data.front) this.frontString = data.front;
+      if (data.back) this.backString = data.back;
       if (data.character) this.character = data.character;
       if (data.emptyCharacter) this.emptyCharacter = data.emptyCharacter;
       if (data.position) this.position = data.position;
       if (data.interval) this.interval = data.interval;
     };
-    var v_name = this;
+  };
+  set front(string) {
+    if (stringLength(string) > stringLength(this.frontString)) {
+      this.position -= stringLength(string) - 1;
+      if (this.position < 1) this.position = 1;
+    } else {
+      this.position += stringLength(this.frontString) - 1;
+    };
+    this.frontString = string;
+  };
+  set back(string) {
+    if (stringLength(string) > stringLength(this.backString)) {
+      let length = this.length - stringLength(this.frontString) - stringLength(this.character) - stringLength(string)
+      if (this.position > length) {
+        this.position = length;
+        if (this.forwardMotion) this.forwardMotion = false;
+      };
+    };
+    this.backString = string;
+  };
+  set empty(string) {
+    this.emptyCharacter = string.charAt(0);
   };
   start() {
     this.running = true;
     this.run();
   };
-  stop() {
+  stop(message) {
     this.running = false;
     this.clear();
+    if (message) this.message(message);
   };
   run() {
-    let length = this.length - stringLength(this.front) - stringLength(this.character) - stringLength(this.back);
+    let length = this.length - stringLength(this.frontString) - stringLength(this.character) - stringLength(this.backString);
     if (this.position > length) {
       this.position = 1;
       this.forwardMotion = true;
     };
-    var working = this.front;
+    var working = this.frontString;
     var i = 1;
     while (i < this.position) {
       working += this.emptyCharacter;
@@ -48,7 +82,7 @@ module.exports = class Working {
       working += this.emptyCharacter;
       i++;
     };
-    working += this.back;
+    working += this.backString;
     process.stdout.write(`${working}\r`);
     if (this.forwardMotion) {
       this.position++;
@@ -72,13 +106,6 @@ module.exports = class Working {
     this.clear();
     process.stdout.write(`${string}\n`);
   };
-  setFront(string) {
-    if (stringLength(string) > stringLength(this.front)) {
-      this.position -= stringLength(string) - 1;
-      if (this.position < 1) this.position = 1;
-    } else {
-      this.position += stringLength(this.front) - 1;
-    };
-    this.front = string;
-  };
 };
+
+module.exports = Working;
