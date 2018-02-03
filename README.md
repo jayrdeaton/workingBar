@@ -19,7 +19,8 @@ npm install --save working-bar
 Instantiate object
 
 ```
-let workingBar = require('working-bar');
+let WorkingBar = require('working-bar');
+let workingBar = new WorkingBar();
 ```
 
 Configure object

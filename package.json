@@ -1,6 +1,6 @@
 {
   "name": "working-bar",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Displays a bar while node is working",
   "main": "index.js",
   "scripts": {
