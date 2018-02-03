@@ -43,19 +43,20 @@ Print a message without stopping display
 workingBar.message('Hey there');
 ```
 
-Change front while displaying
+Change front or back while displaying
 
 ```
-workingBar.setFront('New Front: [');
+workingBar.front = 'New Front: [';
+workingBar.back = '] New Back';
 ```
 
 Also works with colored strings
 
-Manually or with plugins like [Chalk](https://www.npmjs.com/package/chalk)
+Manually or with plugins like [Cosmetic](https://www.npmjs.com/package/cosmetic)
 
 ```
 workingBar.character = '\x1b[36m-----\x1b[0m'
-workingBar.setFront(chalk.green('Colored Front: ['));
+workingBar.front = cosmetic.green('Green Front: [');
 ```
 
 Stop process
