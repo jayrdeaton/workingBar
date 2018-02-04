@@ -79,10 +79,10 @@ Only one character strings accepted currently
 workingBar.empty = '0';
 ```
 
-Stop process
+Stop process with an optional message
 
 ```
-workingBar.stop();
+workingBar.stop('Work complete!');
 ```
 
 Default values
