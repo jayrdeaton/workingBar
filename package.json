@@ -16,7 +16,5 @@
     "url": "https://github.com/jayrdeaton/workingBar/issues"
   },
   "homepage": "https://github.com/jayrdeaton/workingBar#readme",
-  "dependencies": {
-    "string-length": "^2.0.0"
-  }
+  "dependencies": {}
 }

@@ -1,8 +1,9 @@
 let WorkingBar = require('./');
 
-let workingBar = new WorkingBar();
-workingBar.length = 80;
-workingBar.character = '------';
+let workingBar = new WorkingBar({
+  character: '------',
+  interval: 500
+});
 workingBar.start();
 
 setTimeout(() => {
@@ -25,5 +26,12 @@ setTimeout(() => {
 }, 8000);
 
 setTimeout(() => {
-  workingBar.stop();
-}, 10000);
+  workingBar.back = '\x1b[0m]';
+  workingBar.before = '|';
+  workingBar.character = '\x1b[36m-';
+  workingBar.after = '-';
+}, 15000);
+
+// setTimeout(() => {
+//   workingBar.stop();
+// }, 12000);
